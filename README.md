@@ -3,7 +3,7 @@
 Aplicação desktop em Java 21 para analisar e corrigir arquivos posicionais SIPAT, remover protocolos duplicados e recalcular controles com validação pós-gravação.
 
 <div align="center">
-  <img src="assets/corretor-sipat.png" alt="Tela inicial do Corretor SIPAT, com seleção de arquivo e indicadores de análise" width="100%">
+  <img src="assets/corretor-sipat.png" alt="Infográfico do Corretor SIPAT com visão geral, funcionalidades, fluxo de processamento e tecnologias" width="100%">
 </div>
 
 ## Visão geral
