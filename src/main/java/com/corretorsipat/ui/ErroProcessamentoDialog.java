@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.nio.file.Path;
 
+/** Exibe uma falha de processamento e permite abrir seu log técnico quando disponível. */
 public final class ErroProcessamentoDialog extends JDialog {
     public ErroProcessamentoDialog(Frame owner, String mensagem, Path log) {
         super(owner, "Falha no processamento", Dialog.ModalityType.APPLICATION_MODAL);

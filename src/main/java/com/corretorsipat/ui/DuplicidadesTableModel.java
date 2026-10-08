@@ -6,6 +6,7 @@ import javax.swing.table.AbstractTableModel;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/** Adapta grupos de duplicidade para as quatro colunas da tabela principal. */
 public final class DuplicidadesTableModel extends AbstractTableModel {
     private final String[] colunas = {"Protocolo", "Linha preservada", "Linhas removidas", "Ocorrências"};
     private List<GrupoDuplicidade> dados = List.of();

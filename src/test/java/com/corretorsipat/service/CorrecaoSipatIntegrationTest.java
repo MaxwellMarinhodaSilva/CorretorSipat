@@ -13,6 +13,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Valida integração entre correção, gravação, recálculo e releitura da saída. */
 class CorrecaoSipatIntegrationTest {
     @TempDir Path temp;
 

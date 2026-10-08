@@ -5,10 +5,12 @@ import com.corretorsipat.service.SipatValidationException;
 
 import java.math.BigInteger;
 
+/** Extrai e atualiza somente os campos definidos no layout SIPAT. */
 public final class SipatParser {
     private SipatParser() {
     }
 
+    /** Valida uma linha de 800 caracteres e extrai os campos aplicáveis ao seu tipo. */
     public static RegistroSip parse(String linha, int numeroLinha) throws SipatValidationException {
         validarTamanho(linha, numeroLinha);
         char tipo = linha.charAt(LayoutSipat.TIPO_INICIO);
@@ -31,6 +33,7 @@ public final class SipatParser {
         return new RegistroSip(numeroLinha, tipo, linha, null, null, sequencial);
     }
 
+    /** Garante o tamanho fixo antes de qualquer acesso posicional por substring. */
     public static void validarTamanho(String linha, int numeroLinha) throws SipatValidationException {
         if (linha == null || linha.length() != LayoutSipat.TAMANHO_REGISTRO) {
             int tamanho = linha == null ? 0 : linha.length();
@@ -38,10 +41,12 @@ public final class SipatParser {
         }
     }
 
+    /** Obtém um campo usando índices já centralizados em {@link LayoutSipat}. */
     public static String extrair(String linha, int inicio, int fim) {
         return linha.substring(inicio, fim);
     }
 
+    /** Substitui um campo sem alterar o comprimento total do registro posicional. */
     public static String substituir(String linha, int inicio, int fim, String valor) {
         if (linha == null || linha.length() != LayoutSipat.TAMANHO_REGISTRO) {
             throw new IllegalArgumentException("A linha deve possuir exatamente 800 caracteres.");
@@ -56,6 +61,7 @@ public final class SipatParser {
         return resultado;
     }
 
+    /** Compara detalhes desconsiderando apenas o sequencial físico do fim da linha. */
     public static boolean conteudoIgualExcetoSequencial(String primeira, String outra) {
         return primeira.substring(0, LayoutSipat.SEQUENCIAL_INICIO)
                 .equals(outra.substring(0, LayoutSipat.SEQUENCIAL_INICIO));

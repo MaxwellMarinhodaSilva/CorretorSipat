@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;
 
+/** Gera os relatórios TXT e CSV a partir do resultado imutável do processamento. */
 public final class RelatorioService {
     private static final DateTimeFormatter DATA = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 

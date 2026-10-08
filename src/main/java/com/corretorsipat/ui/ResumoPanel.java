@@ -8,6 +8,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import java.awt.*;
 
+/** Mostra cartões de métricas e a tabela de protocolos duplicados da análise atual. */
 public final class ResumoPanel extends JPanel {
     private final JLabel registros = valor();
     private final JLabel unicos = valor();

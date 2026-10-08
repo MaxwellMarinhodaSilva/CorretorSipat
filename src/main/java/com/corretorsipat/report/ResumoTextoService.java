@@ -4,6 +4,7 @@ import com.corretorsipat.model.ResultadoProcessamento;
 
 import java.util.stream.Collectors;
 
+/** Converte o resultado processado em um resumo textual apropriado para cópia. */
 public final class ResumoTextoService {
     public String gerar(ResultadoProcessamento r) {
         String linhas = r.analise().linhasRemovidas().stream()

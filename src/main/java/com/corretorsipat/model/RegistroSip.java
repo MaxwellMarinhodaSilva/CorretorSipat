@@ -2,6 +2,7 @@ package com.corretorsipat.model;
 
 import java.math.BigInteger;
 
+/** Representa uma linha física do SIPAT e os campos já interpretados pelo parser. */
 public record RegistroSip(
         int linhaOriginal,
         char tipo,

@@ -10,9 +10,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
+/** Grava o SIP corrigido em Windows-1252, com CRLF e substituição atômica quando disponível. */
 public final class ArquivoSipatWriter {
+    /** Valida o tamanho físico, codifica sem BOM e grava a saída por arquivo temporário. */
     public void escrever(Path destino, List<String> linhas) throws IOException {
         if (linhas == null || linhas.isEmpty()) throw new IOException("Não há registros para gravar.");
+        // Falha antes de criar qualquer saída se uma linha perder o tamanho posicional obrigatório.
         for (int i = 0; i < linhas.size(); i++) {
             if (linhas.get(i).length() != LayoutSipat.TAMANHO_REGISTRO) {
                 throw new IOException("A linha de saída " + (i + 1) + " não possui 800 caracteres.");
@@ -36,6 +39,7 @@ public final class ArquivoSipatWriter {
         if (pasta == null || !Files.isDirectory(pasta) || !Files.isWritable(pasta)) {
             throw new IOException("A pasta de saída não existe ou não permite escrita.");
         }
+        // Evita arquivo final parcial caso a escrita ou o movimento falhe no meio da operação.
         Path temporario = Files.createTempFile(pasta, destino.getFileName().toString() + ".", ".tmp");
         try {
             Files.write(temporario, bytes);

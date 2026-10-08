@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.nio.file.Path;
 import java.time.format.DateTimeFormatter;
 
+/** Permite consultar, selecionar e limpar registros persistidos do histórico local. */
 public final class HistoricoDialog extends JDialog {
     private static final String CARTAO_LISTA = "lista";
     private static final String CARTAO_VAZIO = "vazio";

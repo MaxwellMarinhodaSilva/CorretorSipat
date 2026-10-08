@@ -14,21 +14,29 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/** Valida a entrada e identifica duplicidades preservando a primeira ocorrência física. */
 public final class AnaliseSipatService {
     private final ArquivoSipatReader reader;
 
+    /** Cria o serviço com o leitor padrão de arquivos posicionais. */
     public AnaliseSipatService() {
         this(new ArquivoSipatReader());
     }
 
+    /** Permite injetar o leitor para testes isolados das regras de análise. */
     AnaliseSipatService(ArquivoSipatReader reader) {
         this.reader = reader;
     }
 
+    /** Registra somente controles divergentes para evitar ruído no relatório da análise. */
     private static void adicionarSeDiferente(List<Inconsistencia> lista, String campo, String esperado, String encontrado) {
         if (!esperado.equals(encontrado)) lista.add(new Inconsistencia(campo, esperado, encontrado));
     }
 
+    /**
+     * Lê, valida a estrutura e separa detalhes preservados dos excedentes duplicados.
+     * A primeira ocorrência permanece no resultado porque o mapa mantém a ordem física de leitura.
+     */
     public AnaliseSipat analisar(Path origem, ProgressoListener progresso)
             throws IOException, SipatValidationException {
         ProgressoListener listener = progresso == null ? ProgressoListener.NENHUM : progresso;
@@ -41,6 +49,7 @@ public final class AnaliseSipatService {
             throw new SipatValidationException("A primeira linha deve ser um cabeçalho do tipo 0.");
         if (registros.getLast().tipo() != '9')
             throw new SipatValidationException("A última linha deve ser um rodapé do tipo 9.");
+        // Impede que tipos intermediários inválidos sejam corrigidos como se fossem detalhes.
         for (int i = 1; i < registros.size() - 1; i++) {
             if (registros.get(i).tipo() != '1') {
                 throw new SipatValidationException("Linha " + (i + 1) + ": registro de detalhe deve ser do tipo 1.");
@@ -55,6 +64,7 @@ public final class AnaliseSipatService {
         BigInteger somaOriginal = BigInteger.ZERO;
         BigInteger somaCorrigida = BigInteger.ZERO;
 
+        // LinkedHashMap preserva a primeira ocorrência e a ordem original dos protocolos.
         for (int i = 1; i < registros.size() - 1; i++) {
             RegistroSip atual = registros.get(i);
             somaOriginal = somaOriginal.add(atual.valor());
@@ -98,6 +108,7 @@ public final class AnaliseSipatService {
             inconsistencias.add(new Inconsistencia("Quebra de linha", "CRLF", arquivo.quebraLinha().descricao()));
         if (!arquivo.terminaComQuebra()) inconsistencias.add(new Inconsistencia("CRLF final", "presente", "ausente"));
 
+        // Confere o sequencial físico sem alterá-lo; a correção ocorrerá em outro serviço.
         int seqIncorretos = 0;
         for (int i = 0; i < registros.size(); i++) {
             String esperado = FormatUtil.zeros(i + 1, 5);

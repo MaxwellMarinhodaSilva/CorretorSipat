@@ -13,13 +13,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/** Reabre a saída gravada e confirma seus controles sem reutilizar a análise anterior. */
 public final class ValidacaoPosGravacaoService {
     private final ArquivoSipatReader reader = new ArquivoSipatReader();
 
+    /** Cria um item de auditoria com nome, estado e detalhe legível pela interface. */
     private static ItemValidacao item(String nome, boolean sucesso, String detalhe) {
         return new ItemValidacao(nome, sucesso, detalhe);
     }
 
+    /** Recalcula os controles diretamente da saída persistida para evitar validar memória antiga. */
     public ResultadoValidacao validar(Path arquivoCorrigido) {
         List<ItemValidacao> itens = new ArrayList<>();
         try {
@@ -32,6 +35,7 @@ public final class ValidacaoPosGravacaoService {
                     registros.size() + " linha(s) verificadas."));
 
             List<RegistroSip> detalhes = registros.subList(1, registros.size() - 1);
+            // A inserção no conjunto falha apenas quando um protocolo ainda está repetido.
             Set<String> protocolos = new HashSet<>();
             boolean unicos = detalhes.stream().allMatch(r -> protocolos.add(r.protocolo()));
             itens.add(item("Protocolos sem repetição", unicos, protocolos.size() + " protocolo(s) único(s)."));
@@ -53,6 +57,7 @@ public final class ValidacaoPosGravacaoService {
                     LayoutSipat.RODAPE_SEGURANCA_INICIO, LayoutSipat.RODAPE_SEGURANCA_FIM));
             itens.add(item("Quantidades de cabeçalho e rodapé", quantidades, "Detalhes: " + quantidade + "; segurança: " + seguranca + "."));
 
+            // Cada posição física deve refletir o sequencial que será aceito pelo destino.
             boolean sequenciais = true;
             for (int i = 0; i < registros.size(); i++) {
                 if (!FormatUtil.zeros(i + 1, 5).equals(registros.get(i).sequencial())) {
@@ -66,6 +71,7 @@ public final class ValidacaoPosGravacaoService {
             itens.add(item("Windows-1252 sem BOM e CRLF final", fisico,
                     arquivo.codificacao() + ", " + arquivo.quebraLinha().descricao() + ", CRLF final: " + arquivo.terminaComQuebra() + "."));
         } catch (Exception ex) {
+            // Registra a impossibilidade de releitura como falha de validação, sem ocultá-la.
             itens.add(item("Reabertura independente", false, ex.getMessage()));
         }
         return new ResultadoValidacao(itens);

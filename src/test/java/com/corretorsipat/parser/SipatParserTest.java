@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Exercita extração e substituição dos campos fixos previstos pelo layout. */
 class SipatParserTest {
     @Test void extraiValorProtocoloESequencialNosLimitesExatos() throws Exception {
         String linha = TestData.detalhe("20250400136053", "00000000010621", 2, "A");

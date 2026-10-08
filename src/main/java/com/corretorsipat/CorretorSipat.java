@@ -6,6 +6,7 @@ import com.corretorsipat.ui.MainFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
+/** Inicializa o tema e agenda a criação da janela principal na EDT do Swing. */
 public final class CorretorSipat {
     private CorretorSipat() { }
 

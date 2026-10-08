@@ -10,6 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Confirma agrupamento, ordem física e métricas calculadas na análise de duplicidades. */
 class AnaliseSipatServiceTest {
     @TempDir Path temp;
 

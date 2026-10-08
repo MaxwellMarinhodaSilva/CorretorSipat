@@ -26,6 +26,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/** Coordena a seleção, análise e correção do SIPAT na janela principal. */
 public final class MainFrame extends JFrame {
     private static final Logger LOGGER = Logger.getLogger(MainFrame.class.getName());
     private static final int TAMANHO_LOGO_CABECALHO = 56;

@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/** Verifica persistência, exclusão individual e limpeza do histórico temporário. */
 class HistoricoServiceTest {
     @TempDir
     Path temporario;

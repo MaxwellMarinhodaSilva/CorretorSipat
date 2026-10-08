@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Cria registros posicionais sintéticos para que os testes não dependam de arquivos reais. */
 public final class TestData {
     private TestData() { }
 

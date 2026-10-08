@@ -2,6 +2,7 @@ package com.corretorsipat.util;
 
 import java.math.BigInteger;
 
+/** Reúne formatações visuais e posicionais reutilizadas nos relatórios e na interface. */
 public final class FormatUtil {
     private FormatUtil() {
     }

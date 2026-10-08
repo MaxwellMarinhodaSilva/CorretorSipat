@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+/** Resolve de forma centralizada a pasta-base e os diretórios auxiliares da aplicação. */
 public final class DiretoriosAplicacao {
     private final Path pastaBase;
 

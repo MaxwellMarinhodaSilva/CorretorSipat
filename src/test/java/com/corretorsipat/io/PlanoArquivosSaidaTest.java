@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/** Verifica diretórios auxiliares e nomes alternativos que evitam sobrescrita. */
 class PlanoArquivosSaidaTest {
     @TempDir Path temp;
 

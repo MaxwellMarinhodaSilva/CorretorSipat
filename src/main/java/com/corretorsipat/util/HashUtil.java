@@ -8,6 +8,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HexFormat;
 
+/** Calcula hashes para registrar a identidade dos arquivos processados. */
 public final class HashUtil {
     private HashUtil() {
     }

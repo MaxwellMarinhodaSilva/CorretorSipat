@@ -5,6 +5,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/** Agrega análise, correções, validação, duração e caminhos de uma correção concluída. */
 public record ResultadoProcessamento(
         LocalDateTime dataHora,
         AnaliseSipat analise,

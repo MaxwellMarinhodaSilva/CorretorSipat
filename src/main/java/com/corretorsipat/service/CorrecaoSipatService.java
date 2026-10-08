@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Orquestra a reconstrução, gravação, validação pós-gravação e relatórios da correção. */
 public final class CorrecaoSipatService {
     private final AnaliseSipatService analiseService = new AnaliseSipatService();
     private final ArquivoSipatWriter writer = new ArquivoSipatWriter();
@@ -25,11 +26,16 @@ public final class CorrecaoSipatService {
     private final RelatorioService relatorioService = new RelatorioService();
     private final PlanoArquivosSaida planoService = new PlanoArquivosSaida();
 
+    /** Produz uma mensagem utilizável quando a exceção original não possui detalhe. */
     private static String mensagem(Throwable ex) {
         return ex.getMessage() == null || ex.getMessage().isBlank()
                 ? "Não foi possível concluir o processamento." : ex.getMessage();
     }
 
+    /**
+     * Reconstrói o SIP preservando somente a primeira ocorrência, atualiza os controles
+     * permitidos e só confirma o resultado após reabrir e validar o arquivo gravado.
+     */
     public ResultadoProcessamento corrigir(Path origem, ProgressoListener progresso) throws ProcessamentoException {
         ProgressoListener listener = progresso == null ? ProgressoListener.NENHUM : progresso;
         Instant inicio = Instant.now();
@@ -52,6 +58,7 @@ public final class CorrecaoSipatService {
                 String seguranca = FormatUtil.zeros(quantidade * 2, 5);
                 String soma = FormatUtil.zeros(analise.somaCorrigida(), 18);
 
+                // Reconstrói a sequência física com cabeçalho, detalhes preservados e rodapé.
                 List<RegistroSip> origemSelecionada = new ArrayList<>();
                 origemSelecionada.add(analise.arquivoSip().registros().getFirst());
                 origemSelecionada.addAll(analise.detalhesPreservados());
@@ -68,6 +75,7 @@ public final class CorrecaoSipatService {
                 linhas.add(cabecalho);
                 analise.detalhesPreservados().forEach(r -> linhas.add(r.conteudo()));
                 linhas.add(rodape);
+                // Renumera todas as linhas após as remoções, mantendo cinco posições fixas.
                 int renumerados = 0;
                 for (int i = 0; i < linhas.size(); i++) {
                     String novo = FormatUtil.zeros(i + 1, 5);
@@ -80,6 +88,7 @@ public final class CorrecaoSipatService {
                 log.escrever("SIP corrigido gravado: " + arquivos.sipCorrigido());
                 listener.atualizar(75, "Reabrindo e validando a saída...");
                 ResultadoValidacao validacao = validacaoService.validar(arquivos.sipCorrigido());
+                // Nunca mantém uma saída que falhou na validação independente pós-gravação.
                 if (!validacao.sucesso()) {
                     Files.deleteIfExists(arquivos.sipCorrigido());
                     throw new SipatValidationException("A validação independente encontrou divergências; a saída inválida foi removida.");
@@ -105,6 +114,7 @@ public final class CorrecaoSipatService {
                 listener.atualizar(100, "Processamento concluído e validado.");
                 return resultado;
             } catch (Exception ex) {
+                // O detalhe técnico fica no log; a UI recebe uma exceção com caminho conhecido.
                 log.erro(ex);
                 throw new ProcessamentoException(mensagem(ex), arquivos.log(), ex);
             }

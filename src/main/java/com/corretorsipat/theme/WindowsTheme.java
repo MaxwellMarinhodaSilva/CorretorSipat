@@ -11,6 +11,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+/** Aplica FlatLaf e acompanha a preferência clara ou escura do Windows. */
 public final class WindowsTheme {
     private static final ScheduledExecutorService MONITOR = Executors.newSingleThreadScheduledExecutor(r -> {
         Thread t = new Thread(r, "tema-windows");

@@ -2,6 +2,7 @@ package com.corretorsipat.model;
 
 import java.math.BigInteger;
 
+/** Conserva as informações de auditoria de um detalhe removido por duplicidade. */
 public record LinhaRemovida(
         int linhaOriginalRemovida,
         String protocolo,

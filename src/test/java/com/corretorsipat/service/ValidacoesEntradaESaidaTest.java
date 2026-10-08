@@ -12,6 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Rejeita cenários estruturais inválidos de entrada e de validação pós-gravação. */
 class ValidacoesEntradaESaidaTest {
     @TempDir Path temp;
 

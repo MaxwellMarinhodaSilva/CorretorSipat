@@ -13,6 +13,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Confirma preservação de bytes, Windows-1252 e CRLF no ciclo de I/O SIPAT. */
 class ArquivoSipatIoTest {
     @TempDir Path temp;
 

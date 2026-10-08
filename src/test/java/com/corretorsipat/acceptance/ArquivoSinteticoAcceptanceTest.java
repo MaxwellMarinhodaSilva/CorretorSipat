@@ -26,6 +26,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/** Exercita, com 220 detalhes artificiais, o fluxo completo de correção e validação. */
 class ArquivoSinteticoAcceptanceTest {
     private static final List<Integer> LINHAS_REMOVIDAS = List.of(36, 41, 45, 75, 95, 106, 131, 147, 214, 215, 216, 217, 218, 219, 220, 221);
     private static final Set<Integer> POSICOES_REMOVIDAS = Set.copyOf(LINHAS_REMOVIDAS.stream().map(linha -> linha - 1).toList());

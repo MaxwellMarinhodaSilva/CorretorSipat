@@ -6,6 +6,7 @@ import javax.swing.table.AbstractTableModel;
 import java.math.BigInteger;
 import java.util.List;
 
+/** Expõe a auditoria de linhas removidas na tabela do diálogo de conclusão. */
 public final class LinhasRemovidasTableModel extends AbstractTableModel {
     private final String[] colunas = {"Linha removida", "Protocolo", "Linha preservada", "Valor", "Controle do devedor", "Classificação", "Motivo"};
     private final List<LinhaRemovida> dados;

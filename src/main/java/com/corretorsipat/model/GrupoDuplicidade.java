@@ -2,6 +2,7 @@ package com.corretorsipat.model;
 
 import java.util.List;
 
+/** Identifica um protocolo repetido, sua primeira linha e as ocorrências excedentes. */
 public record GrupoDuplicidade(
         String protocolo,
         int linhaOriginalPreservada,

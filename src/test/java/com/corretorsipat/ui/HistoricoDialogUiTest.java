@@ -29,6 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/** Verifica estados visuais e habilitação das ações do diálogo de histórico. */
 class HistoricoDialogUiTest {
     @TempDir
     Path temporario;

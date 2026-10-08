@@ -18,10 +18,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/** Lê bytes SIPAT preservando codificação, quebras de linha e numeração física. */
 public final class ArquivoSipatReader {
     public static final Charset WINDOWS_1252 = Charset.forName("windows-1252");
     private static final long LIMITE_BYTES = 200L * 1024 * 1024;
 
+    /** Verifica existência, permissão, conteúdo e limite seguro antes de carregar bytes. */
     private static void validarLeitura(Path origem) throws IOException {
         if (origem == null || !Files.isRegularFile(origem)) {
             throw new IOException("O arquivo selecionado não existe ou não é um arquivo válido.");
@@ -32,6 +34,7 @@ public final class ArquivoSipatReader {
         if (tamanho > LIMITE_BYTES) throw new IOException("O arquivo excede o limite seguro de 200 MB.");
     }
 
+    /** Decodifica estritamente, priorizando Windows-1252 e aceitando UTF-8 apenas quando necessário. */
     private static Decodificacao decodificar(byte[] bytes, boolean bom) throws IOException {
         if (bom) {
             if (bytes.length >= 3 && (bytes[0] & 0xff) == 0xef && (bytes[1] & 0xff) == 0xbb && (bytes[2] & 0xff) == 0xbf) {
@@ -63,6 +66,7 @@ public final class ArquivoSipatReader {
                 || ((bytes[0] & 0xff) == 0xfe && (bytes[1] & 0xff) == 0xff));
     }
 
+    /** Classifica a convenção física de quebra para que a análise detecte formatos não aceitos. */
     private static TipoQuebraLinha detectarQuebra(String texto) {
         int crlf = contar(texto, "\r\n");
         String semCrLf = texto.replace("\r\n", "");
@@ -81,6 +85,7 @@ public final class ArquivoSipatReader {
         return total;
     }
 
+    /** Lê cada linha física e a delega ao parser sem normalizar seu conteúdo. */
     public ArquivoSip ler(Path origem) throws IOException, SipatValidationException {
         validarLeitura(origem);
         byte[] bytes = Files.readAllBytes(origem);
@@ -93,6 +98,7 @@ public final class ArquivoSipatReader {
         int limite = terminaComQuebra ? partes.length - 1 : partes.length;
 
         List<RegistroSip> registros = new ArrayList<>(Math.max(limite, 0));
+        // Numera a linha a partir de um para manter mensagens compatíveis com o arquivo original.
         for (int i = 0; i < limite; i++) {
             registros.add(SipatParser.parse(partes[i], i + 1));
         }
