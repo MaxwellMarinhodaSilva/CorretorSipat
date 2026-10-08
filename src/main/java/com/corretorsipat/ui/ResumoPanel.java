@@ -3,6 +3,7 @@ package com.corretorsipat.ui;
 import com.corretorsipat.model.AnaliseSipat;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import java.awt.*;
@@ -34,6 +35,7 @@ public final class ResumoPanel extends JPanel {
         tabela.setAutoCreateRowSorter(true);
         tabela.setFillsViewportHeight(true);
         tabela.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
+        centralizarTabela();
         JScrollPane scroll = new JScrollPane(tabela,
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -58,6 +60,19 @@ public final class ResumoPanel extends JPanel {
         return l;
     }
 
+    private void centralizarTabela() {
+        TableCellRenderer cabecalhoOriginal = tabela.getTableHeader().getDefaultRenderer();
+        tabela.getTableHeader().setDefaultRenderer((table, value, isSelected, hasFocus, row, column) -> {
+            Component componente = cabecalhoOriginal.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            if (componente instanceof JLabel label) label.setHorizontalAlignment(SwingConstants.CENTER);
+            return componente;
+        });
+        DefaultTableCellRenderer celula = new DefaultTableCellRenderer();
+        celula.setHorizontalAlignment(SwingConstants.CENTER);
+        tabela.setDefaultRenderer(String.class, celula);
+        tabela.setDefaultRenderer(Integer.class, celula);
+    }
+
     public JPanel indicadores() {
         return indicadores;
     }
@@ -76,6 +91,7 @@ public final class ResumoPanel extends JPanel {
     public void limpar() {
         for (JLabel l : new JLabel[]{registros, unicos, grupos, removidos, somaOriginal, somaCorrigida}) l.setText("—");
         modelo.setDados(java.util.List.of());
+        tabela.clearSelection();
     }
 
     private void ajustarColunas() {

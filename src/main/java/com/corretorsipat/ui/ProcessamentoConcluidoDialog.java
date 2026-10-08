@@ -75,14 +75,18 @@ public final class ProcessamentoConcluidoDialog extends JDialog {
         JPanel coluna = new JPanel(new GridBagLayout());
         for (int linha = 0; linha < dados.length; linha += 2) {
             GridBagConstraints rotulo = new GridBagConstraints();
-            rotulo.gridx = 0; rotulo.gridy = linha / 2; rotulo.weightx = 1;
-            rotulo.fill = GridBagConstraints.HORIZONTAL; rotulo.anchor = GridBagConstraints.LINE_START;
+            rotulo.gridx = 0;
+            rotulo.gridy = linha / 2;
+            rotulo.weightx = 1;
+            rotulo.fill = GridBagConstraints.HORIZONTAL;
+            rotulo.anchor = GridBagConstraints.LINE_START;
             rotulo.insets = new Insets(0, 0, 6, 10);
             coluna.add(new JLabel(dados[linha] + ":"), rotulo);
             JLabel valor = new JLabel(String.valueOf(dados[linha + 1]));
             valor.setFont(valor.getFont().deriveFont(Font.BOLD));
             GridBagConstraints valorConstraints = new GridBagConstraints();
-            valorConstraints.gridx = 1; valorConstraints.gridy = linha / 2;
+            valorConstraints.gridx = 1;
+            valorConstraints.gridy = linha / 2;
             valorConstraints.anchor = GridBagConstraints.LINE_START;
             valorConstraints.insets = new Insets(0, 0, 6, 0);
             coluna.add(valor, valorConstraints);

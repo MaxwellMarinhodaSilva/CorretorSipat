@@ -14,6 +14,7 @@ O processamento mantém o formato físico do arquivo e valida novamente a saída
 
 ## Funcionalidades
 
+- tabela **Duplicidades encontradas** com as quatro colunas centralizadas;
 - seleção de arquivo pelo diálogo, histórico local ou arrastar e soltar;
 - análise prévia da estrutura, dos indicadores e dos protocolos duplicados;
 - preservação da primeira ocorrência de cada protocolo e remoção das posteriores;

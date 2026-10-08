@@ -13,6 +13,8 @@ out/
 .DS_Store
 Thumbs.db
 *.log
+*.SIP
+*.sip
 logs/
 Log/
 Historico/

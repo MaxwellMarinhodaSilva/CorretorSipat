@@ -29,7 +29,7 @@ import java.util.logging.Logger;
 public final class MainFrame extends JFrame {
     private static final Logger LOGGER = Logger.getLogger(MainFrame.class.getName());
     private static final int TAMANHO_LOGO_CABECALHO = 56;
-    private static final String INSTRUCAO_ARQUIVO = "Arraste e solte o arquivo SIPAT aqui ou clique em ‘Selecionar’.";
+    private static final String INSTRUCAO_ARQUIVO = "Arraste e solte o arquivo SIPAT aqui ou clique em “Selecionar”.";
     private final ConfiguracaoService configuracaoService = new ConfiguracaoService();
     private final HistoricoService historicoService = new HistoricoService();
     private final Configuracao configuracao;
@@ -63,6 +63,11 @@ public final class MainFrame extends JFrame {
         configurarEventos();
         configurarAcessibilidade();
         addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+                SwingUtilities.invokeLater(() -> KeyboardFocusManager.getCurrentKeyboardFocusManager().clearGlobalFocusOwner());
+            }
+
             @Override
             public void windowClosing(WindowEvent e) {
                 fechar();
