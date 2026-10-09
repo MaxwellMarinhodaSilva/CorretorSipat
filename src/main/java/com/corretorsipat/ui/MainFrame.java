@@ -26,7 +26,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/** Coordena a seleção, análise e correção do SIPAT na janela principal. */
+/**
+ * Coordena a seleção, análise e correção do SIPAT na janela principal.
+ */
 public final class MainFrame extends JFrame {
     private static final Logger LOGGER = Logger.getLogger(MainFrame.class.getName());
     private static final int TAMANHO_LOGO_CABECALHO = 56;
@@ -78,6 +80,13 @@ public final class MainFrame extends JFrame {
 
     private static Throwable causa(Exception ex) {
         return ex instanceof ExecutionException && ex.getCause() != null ? ex.getCause() : ex;
+    }
+
+    private static void configurarBotao(JButton botao, String dica) {
+        botao.setIconTextGap(7);
+        botao.setToolTipText(dica);
+        botao.getAccessibleContext().setAccessibleName(botao.getText());
+        botao.getAccessibleContext().setAccessibleDescription(dica);
     }
 
     private void montar() {
@@ -214,7 +223,8 @@ public final class MainFrame extends JFrame {
         getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
                 .put(KeyStroke.getKeyStroke("control L"), "limparSessao");
         getRootPane().getActionMap().put("limparSessao", new AbstractAction() {
-            @Override public void actionPerformed(java.awt.event.ActionEvent e) {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
                 if (limpar.isEnabled()) limparSessao();
             }
         });
@@ -405,12 +415,5 @@ public final class MainFrame extends JFrame {
         campoArquivo.setText(INSTRUCAO_ARQUIVO);
         Color cor = UIManager.getColor("Label.disabledForeground");
         if (cor != null) campoArquivo.setForeground(cor);
-    }
-
-    private static void configurarBotao(JButton botao, String dica) {
-        botao.setIconTextGap(7);
-        botao.setToolTipText(dica);
-        botao.getAccessibleContext().setAccessibleName(botao.getText());
-        botao.getAccessibleContext().setAccessibleDescription(dica);
     }
 }

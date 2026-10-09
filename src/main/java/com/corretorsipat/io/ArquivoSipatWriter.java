@@ -10,9 +10,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-/** Grava o SIP corrigido em Windows-1252, com CRLF e substituição atômica quando disponível. */
+/**
+ * Grava o SIP corrigido em Windows-1252, com CRLF e substituição atômica quando disponível.
+ */
 public final class ArquivoSipatWriter {
-    /** Valida o tamanho físico, codifica sem BOM e grava a saída por arquivo temporário. */
+    /**
+     * Valida o tamanho físico, codifica sem BOM e grava a saída por arquivo temporário.
+     */
     public void escrever(Path destino, List<String> linhas) throws IOException {
         if (linhas == null || linhas.isEmpty()) throw new IOException("Não há registros para gravar.");
         // Falha antes de criar qualquer saída se uma linha perder o tamanho posicional obrigatório.

@@ -7,7 +7,9 @@ import java.io.File;
 import java.util.List;
 import java.util.function.Consumer;
 
-/** Recebe arrastar e soltar de um único arquivo SIP legível na área de seleção. */
+/**
+ * Recebe arrastar e soltar de um único arquivo SIP legível na área de seleção.
+ */
 public final class ArquivoTransferHandler extends TransferHandler {
     private final JComponent alvo;
     private final Border normal;

@@ -2,7 +2,9 @@ package com.corretorsipat.service;
 
 import java.nio.file.Path;
 
-/** Exceção com contexto de log para falhas ocorridas durante a correção. */
+/**
+ * Exceção com contexto de log para falhas ocorridas durante a correção.
+ */
 public class ProcessamentoException extends Exception {
     private final Path arquivoLog;
 

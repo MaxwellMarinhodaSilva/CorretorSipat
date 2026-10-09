@@ -7,7 +7,9 @@ import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 
-/** Cria ícones vetoriais coerentes para as ações da interface Swing. */
+/**
+ * Cria ícones vetoriais coerentes para as ações da interface Swing.
+ */
 public final class IconeUtil {
     private static final int TAMANHO = 18;
 

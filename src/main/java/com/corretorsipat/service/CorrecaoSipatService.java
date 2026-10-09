@@ -18,7 +18,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Orquestra a reconstrução, gravação, validação pós-gravação e relatórios da correção. */
+/**
+ * Orquestra a reconstrução, gravação, validação pós-gravação e relatórios da correção.
+ */
 public final class CorrecaoSipatService {
     private final AnaliseSipatService analiseService = new AnaliseSipatService();
     private final ArquivoSipatWriter writer = new ArquivoSipatWriter();
@@ -26,7 +28,9 @@ public final class CorrecaoSipatService {
     private final RelatorioService relatorioService = new RelatorioService();
     private final PlanoArquivosSaida planoService = new PlanoArquivosSaida();
 
-    /** Produz uma mensagem utilizável quando a exceção original não possui detalhe. */
+    /**
+     * Produz uma mensagem utilizável quando a exceção original não possui detalhe.
+     */
     private static String mensagem(Throwable ex) {
         return ex.getMessage() == null || ex.getMessage().isBlank()
                 ? "Não foi possível concluir o processamento." : ex.getMessage();

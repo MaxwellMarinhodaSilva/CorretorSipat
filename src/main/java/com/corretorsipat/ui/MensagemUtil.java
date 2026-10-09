@@ -3,7 +3,9 @@ package com.corretorsipat.ui;
 import javax.swing.*;
 import java.awt.*;
 
-/** Padroniza diálogos informativos, de aviso e de erro exibidos ao usuário. */
+/**
+ * Padroniza diálogos informativos, de aviso e de erro exibidos ao usuário.
+ */
 public final class MensagemUtil {
     private MensagemUtil() {
     }

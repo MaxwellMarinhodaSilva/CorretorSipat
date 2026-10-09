@@ -1,6 +1,8 @@
 package com.corretorsipat.parser;
 
-/** Centraliza todas as posições fixas do layout posicional de 800 caracteres. */
+/**
+ * Centraliza todas as posições fixas do layout posicional de 800 caracteres.
+ */
 public final class LayoutSipat {
     public static final int TAMANHO_REGISTRO = 800;
     public static final int TIPO_INICIO = 0;

@@ -13,16 +13,22 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/** Reabre a saída gravada e confirma seus controles sem reutilizar a análise anterior. */
+/**
+ * Reabre a saída gravada e confirma seus controles sem reutilizar a análise anterior.
+ */
 public final class ValidacaoPosGravacaoService {
     private final ArquivoSipatReader reader = new ArquivoSipatReader();
 
-    /** Cria um item de auditoria com nome, estado e detalhe legível pela interface. */
+    /**
+     * Cria um item de auditoria com nome, estado e detalhe legível pela interface.
+     */
     private static ItemValidacao item(String nome, boolean sucesso, String detalhe) {
         return new ItemValidacao(nome, sucesso, detalhe);
     }
 
-    /** Recalcula os controles diretamente da saída persistida para evitar validar memória antiga. */
+    /**
+     * Recalcula os controles diretamente da saída persistida para evitar validar memória antiga.
+     */
     public ResultadoValidacao validar(Path arquivoCorrigido) {
         List<ItemValidacao> itens = new ArrayList<>();
         try {

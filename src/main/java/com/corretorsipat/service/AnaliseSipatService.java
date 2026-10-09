@@ -14,21 +14,29 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/** Valida a entrada e identifica duplicidades preservando a primeira ocorrência física. */
+/**
+ * Valida a entrada e identifica duplicidades preservando a primeira ocorrência física.
+ */
 public final class AnaliseSipatService {
     private final ArquivoSipatReader reader;
 
-    /** Cria o serviço com o leitor padrão de arquivos posicionais. */
+    /**
+     * Cria o serviço com o leitor padrão de arquivos posicionais.
+     */
     public AnaliseSipatService() {
         this(new ArquivoSipatReader());
     }
 
-    /** Permite injetar o leitor para testes isolados das regras de análise. */
+    /**
+     * Permite injetar o leitor para testes isolados das regras de análise.
+     */
     AnaliseSipatService(ArquivoSipatReader reader) {
         this.reader = reader;
     }
 
-    /** Registra somente controles divergentes para evitar ruído no relatório da análise. */
+    /**
+     * Registra somente controles divergentes para evitar ruído no relatório da análise.
+     */
     private static void adicionarSeDiferente(List<Inconsistencia> lista, String campo, String esperado, String encontrado) {
         if (!esperado.equals(encontrado)) lista.add(new Inconsistencia(campo, esperado, encontrado));
     }

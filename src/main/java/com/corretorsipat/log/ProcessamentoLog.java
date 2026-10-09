@@ -10,7 +10,9 @@ import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/** Registra detalhes técnicos de uma execução em arquivo próprio, incluindo falhas. */
+/**
+ * Registra detalhes técnicos de uma execução em arquivo próprio, incluindo falhas.
+ */
 public final class ProcessamentoLog implements AutoCloseable {
     private static final DateTimeFormatter DATA = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss.SSS");
     private final Path arquivo;

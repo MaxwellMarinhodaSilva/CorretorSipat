@@ -1,6 +1,8 @@
 package com.corretorsipat.config;
 
-/** Armazena somente preferências locais de apresentação e da última pasta usada. */
+/**
+ * Armazena somente preferências locais de apresentação e da última pasta usada.
+ */
 public class Configuracao {
     private String ultimaPasta = "";
     private int x = -1;

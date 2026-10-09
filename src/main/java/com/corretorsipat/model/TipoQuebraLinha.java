@@ -1,6 +1,8 @@
 package com.corretorsipat.model;
 
-/** Enumera as convenções de quebra de linha reconhecidas durante a leitura. */
+/**
+ * Enumera as convenções de quebra de linha reconhecidas durante a leitura.
+ */
 public enum TipoQuebraLinha {
     CRLF("CRLF"), LF("LF"), CR("CR"), MISTA("mista"), AUSENTE("ausente");
 

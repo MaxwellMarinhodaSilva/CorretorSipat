@@ -15,7 +15,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/** Mantém o histórico local de operações concluídas, tolerando registros inválidos antigos. */
+/**
+ * Mantém o histórico local de operações concluídas, tolerando registros inválidos antigos.
+ */
 public final class HistoricoService {
     private static final Logger LOGGER = Logger.getLogger(HistoricoService.class.getName());
     private final Path arquivo;

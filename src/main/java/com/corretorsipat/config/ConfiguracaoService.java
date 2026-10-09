@@ -9,7 +9,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Properties;
 
-/** Carrega e persiste preferências locais sem participar das regras SIPAT. */
+/**
+ * Carrega e persiste preferências locais sem participar das regras SIPAT.
+ */
 public final class ConfiguracaoService {
     private final Path arquivo;
 

@@ -7,7 +7,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
-/** Oferece escrita textual atômica para relatórios, histórico, configurações e logs. */
+/**
+ * Oferece escrita textual atômica para relatórios, histórico, configurações e logs.
+ */
 public final class ArquivoTextoUtil {
     private ArquivoTextoUtil() {
     }

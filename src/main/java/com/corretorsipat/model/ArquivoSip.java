@@ -3,7 +3,9 @@ package com.corretorsipat.model;
 import java.nio.file.Path;
 import java.util.List;
 
-/** Representa o arquivo físico lido, inclusive codificação e quebra de linha originais. */
+/**
+ * Representa o arquivo físico lido, inclusive codificação e quebra de linha originais.
+ */
 public record ArquivoSip(
         Path caminho,
         String codificacao,

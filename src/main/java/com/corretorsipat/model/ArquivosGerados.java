@@ -2,7 +2,9 @@ package com.corretorsipat.model;
 
 import java.nio.file.Path;
 
-/** Agrupa os caminhos reais dos artefatos produzidos por uma correção. */
+/**
+ * Agrupa os caminhos reais dos artefatos produzidos por uma correção.
+ */
 public record ArquivosGerados(Path sipCorrigido, Path relatorioTxt, Path relatorioCsv, Path log) {
     public Path pastaBase() {
         Path pastaLog = log.toAbsolutePath().normalize().getParent();

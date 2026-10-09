@@ -14,7 +14,9 @@ import java.awt.datatransfer.StringSelection;
 import java.time.Duration;
 import java.util.stream.Collectors;
 
-/** Apresenta o resultado validado, linhas removidas e atalhos para os arquivos gerados. */
+/**
+ * Apresenta o resultado validado, linhas removidas e atalhos para os arquivos gerados.
+ */
 public final class ProcessamentoConcluidoDialog extends JDialog {
     private final ResultadoProcessamento resultado;
 

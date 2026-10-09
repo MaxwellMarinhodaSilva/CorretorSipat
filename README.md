@@ -1,10 +1,16 @@
-# Corretor SIPAT
+# Corretor SIPAT 1.0.1
 
 Aplicação desktop em Java 21 para analisar e corrigir arquivos posicionais SIPAT, remover protocolos duplicados e recalcular controles com validação pós-gravação.
 
 <div align="center">
   <img src="assets/corretor-sipat.png" alt="Infográfico do Corretor SIPAT com visão geral, funcionalidades, fluxo de processamento e tecnologias" width="100%">
 </div>
+
+## Novidades da versão 1.0.1
+
+- aprimoramentos de interface para a tabela de duplicidades, a janela **Processamento concluído** e o estado inicial da aplicação;
+- histórico de arquivos com ações identificadas por ícones, confirmações de exclusão, estado vazio e botões alinhados em uma única linha responsiva;
+- versão exibida de forma centralizada na aplicação, documentação atualizada e comentários profissionais em português do Brasil no código-fonte.
 
 ## Visão geral
 
@@ -103,7 +109,7 @@ mvn clean test package
 O comando gera em `target/` o JAR comum e o JAR com dependências. Para iniciar a aplicação pelo terminal:
 
 ```powershell
-java -jar target\CorretorSipat-1.0.0-jar-with-dependencies.jar
+java -jar target\CorretorSipat-1.0.1-jar-with-dependencies.jar
 ```
 
 Para gerar a imagem da aplicação Windows com runtime próprio:

@@ -4,7 +4,9 @@ import java.math.BigInteger;
 import java.nio.file.Path;
 import java.util.List;
 
-/** Reúne a leitura, métricas e duplicidades apuradas em uma análise SIPAT. */
+/**
+ * Reúne a leitura, métricas e duplicidades apuradas em uma análise SIPAT.
+ */
 public record AnaliseSipat(
         Path arquivo,
         ArquivoSip arquivoSip,

@@ -3,12 +3,14 @@ package com.corretorsipat;
 import com.corretorsipat.theme.WindowsTheme;
 import com.corretorsipat.ui.MainFrame;
 
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
+import javax.swing.*;
 
-/** Inicializa o tema e agenda a criação da janela principal na EDT do Swing. */
+/**
+ * Inicializa o tema e agenda a criação da janela principal na EDT do Swing.
+ */
 public final class CorretorSipat {
-    private CorretorSipat() { }
+    private CorretorSipat() {
+    }
 
     public static void main(String[] args) {
         WindowsTheme.aplicarInicial();
@@ -16,7 +18,9 @@ public final class CorretorSipat {
         UIManager.put("Button.arc", 8);
         UIManager.put("TextComponent.arc", 8);
         SwingUtilities.invokeLater(() -> {
-            MainFrame frame = new MainFrame(); frame.setVisible(true); WindowsTheme.iniciarMonitor();
+            MainFrame frame = new MainFrame();
+            frame.setVisible(true);
+            WindowsTheme.iniciarMonitor();
         });
     }
 }

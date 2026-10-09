@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-/** Calcula nomes de saída sem sobrescrever SIP, relatórios ou logs existentes. */
+/**
+ * Calcula nomes de saída sem sobrescrever SIP, relatórios ou logs existentes.
+ */
 public final class PlanoArquivosSaida {
     private final DiretoriosAplicacao diretorios;
 
