@@ -83,6 +83,35 @@ class HistoricoDialogUiTest {
         }
     }
 
+    @Test
+    void botoesDoRodapeFicamAlinhadosEmUmaLinhaNoTamanhoMinimo() throws Exception {
+        Assumptions.assumeFalse(GraphicsEnvironment.isHeadless());
+        JDialog dialog = criarDialog(criarService());
+        try {
+            SwingUtilities.invokeAndWait(() -> {
+                dialog.setSize(dialog.getMinimumSize());
+                organizarComponentes(dialog);
+            });
+            List<JButton> botoes = List.of(
+                    botao(dialog, "Limpar hist\u00f3rico"),
+                    botao(dialog, "Excluir"),
+                    botao(dialog, "Detalhes"),
+                    botao(dialog, "Selecionar"),
+                    botao(dialog, "Fechar"));
+            int y = botoes.getFirst().getY();
+            for (int i = 0; i < botoes.size(); i++) {
+                assertEquals(y, botoes.get(i).getY(), botoes.get(i).getText());
+                if (i > 0) {
+                    JButton anterior = botoes.get(i - 1);
+                    assertEquals(8, botoes.get(i).getX() - (anterior.getX() + anterior.getWidth()),
+                            botoes.get(i).getText());
+                }
+            }
+        } finally {
+            SwingUtilities.invokeAndWait(dialog::dispose);
+        }
+    }
+
     private HistoricoService criarService() throws Exception {
         Constructor<HistoricoService> construtor = HistoricoService.class.getDeclaredConstructor(Path.class);
         construtor.setAccessible(true);
@@ -116,6 +145,13 @@ class HistoricoDialogUiTest {
         return componentes(raiz, JButton.class).stream()
                 .filter(botao -> texto.equals(botao.getText()))
                 .findFirst().orElseThrow();
+    }
+
+    private static void organizarComponentes(Container container) {
+        container.doLayout();
+        for (Component componente : container.getComponents()) {
+            if (componente instanceof Container filho) organizarComponentes(filho);
+        }
     }
 
     private static <T extends Component> List<T> componentes(Container raiz, Class<T> tipo) {

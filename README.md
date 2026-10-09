@@ -25,6 +25,16 @@ O processamento mantém o formato físico do arquivo e valida novamente a saída
 - interface Swing com tema claro ou escuro do Windows, progresso e recursos de acessibilidade;
 - janela de conclusão com resumo, linhas removidas, correções estruturais e atalhos para os arquivos gerados.
 
+## Interface, histórico e organização
+
+- Ao iniciar, nenhum arquivo ou resultado fica selecionado: os controles dependentes de seleção permanecem indisponíveis até que um arquivo seja escolhido. A área de arquivo apresenta a mensagem: **“Arraste e solte o arquivo SIPAT aqui ou clique em ‘Selecionar’”**.
+- A tabela **Duplicidades encontradas** apresenta protocolo, linha preservada, linhas removidas e total de ocorrências com as informações centralizadas para facilitar a conferência.
+- A janela **Processamento concluído** é redimensionável e mantém o resumo, as correções, as linhas removidas e os atalhos para os arquivos gerados acessíveis em diferentes tamanhos de tela.
+- A janela **Histórico de arquivos** permite consultar e selecionar registros de processamentos anteriores. Seus botões possuem ícones, textos de apoio e ficam alinhados lado a lado, com espaçamento uniforme mesmo ao redimensionar a janela.
+- No histórico, é possível excluir um registro individual ou limpar todos os registros, sempre com confirmação. Quando não há registros, a janela exibe a mensagem **“Não existem arquivos no histórico.”**.
+- A aplicação organiza os dados persistidos nas pastas `Historico`, `Log`, `Relatorios/CSV` e `Relatorios/TXT`. As pastas necessárias são criadas automaticamente.
+- Antes e depois da gravação, o SIP passa por validações estruturais, incluindo tamanho fixo dos registros, tipos de registro, controles, sequenciais e integridade da saída.
+
 ## Fluxo de processamento
 
 ```text

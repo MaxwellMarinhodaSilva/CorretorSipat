@@ -11,7 +11,9 @@ import java.awt.event.MouseEvent;
 import java.nio.file.Path;
 import java.time.format.DateTimeFormatter;
 
-/** Permite consultar, selecionar e limpar registros persistidos do histórico local. */
+/**
+ * Permite consultar, selecionar e limpar registros persistidos do histórico local.
+ */
 public final class HistoricoDialog extends JDialog {
     private static final String CARTAO_LISTA = "lista";
     private static final String CARTAO_VAZIO = "vazio";
@@ -37,12 +39,13 @@ public final class HistoricoDialog extends JDialog {
         configurarLista();
         criarConteudoCentral();
         add(painelCentral, BorderLayout.CENTER);
-        add(criarRodape(), BorderLayout.SOUTH);
+        JPanel rodape = criarRodape();
+        add(rodape, BorderLayout.SOUTH);
         configurarAtalhos();
         service.carregar().forEach(modelo::addElement);
         atualizarEstado();
         setSize(820, 460);
-        setMinimumSize(new Dimension(600, 340));
+        setMinimumSize(new Dimension(Math.max(600, rodape.getPreferredSize().width + 20), 340));
         setLocationRelativeTo(owner);
     }
 
@@ -112,16 +115,12 @@ public final class HistoricoDialog extends JDialog {
         excluir = botao("Excluir", IconeUtil.excluir(), "Excluir somente o registro selecionado do histórico", this::excluirSelecionado);
         limpar = botao("Limpar histórico", IconeUtil.limparHistorico(), "Apagar todos os registros do histórico", this::limparHistorico);
         JButton fechar = botao("Fechar", IconeUtil.fechar(), "Fechar a janela de histórico", this::dispose);
-        JPanel botoes = new JPanel(new java.awt.GridLayout(0, 1, 0, 2));
-        JPanel gerenciamento = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 3));
-        JPanel navegacao = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 3));
-        gerenciamento.add(limpar);
-        gerenciamento.add(excluir);
-        navegacao.add(detalhes);
-        navegacao.add(selecionar);
-        navegacao.add(fechar);
-        botoes.add(gerenciamento);
-        botoes.add(navegacao);
+        JPanel botoes = new JPanel(new FlowLayout(FlowLayout.CENTER, 8, 4));
+        botoes.add(limpar);
+        botoes.add(excluir);
+        botoes.add(detalhes);
+        botoes.add(selecionar);
+        botoes.add(fechar);
         return botoes;
     }
 
