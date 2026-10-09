@@ -32,6 +32,7 @@ public final class HistoricoDialog extends JDialog {
 
     private HistoricoDialog(Frame owner, HistoricoService service) {
         super(owner, "Histórico de arquivos", Dialog.ModalityType.APPLICATION_MODAL);
+        IconeAplicacao.aplicar(this);
         this.service = service;
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout(10, 10));

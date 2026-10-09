@@ -60,8 +60,7 @@ public final class MainFrame extends JFrame {
         setSize(Math.max(1000, configuracao.getLargura()), Math.max(650, configuracao.getAltura()));
         if (configuracao.getX() >= 0 && configuracao.getY() >= 0) setLocation(configuracao.getX(), configuracao.getY());
         else setLocationRelativeTo(null);
-        var recurso = MainFrame.class.getResource("/icones/corretor_sipat_32.png");
-        if (recurso != null) setIconImage(new ImageIcon(recurso).getImage());
+        IconeAplicacao.aplicar(this);
         montar();
         configurarEventos();
         configurarAcessibilidade();

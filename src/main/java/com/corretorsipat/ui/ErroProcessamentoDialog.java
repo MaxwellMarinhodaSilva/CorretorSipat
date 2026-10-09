@@ -12,6 +12,7 @@ import java.nio.file.Path;
 public final class ErroProcessamentoDialog extends JDialog {
     public ErroProcessamentoDialog(Frame owner, String mensagem, Path log) {
         super(owner, "Falha no processamento", Dialog.ModalityType.APPLICATION_MODAL);
+        IconeAplicacao.aplicar(this);
         setLayout(new BorderLayout(10, 10));
         setSize(620, 270);
         setMinimumSize(new Dimension(460, 220));

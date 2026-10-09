@@ -22,6 +22,7 @@ public final class ProcessamentoConcluidoDialog extends JDialog {
 
     public ProcessamentoConcluidoDialog(Frame owner, ResultadoProcessamento resultado) {
         super(owner, "Processamento concluído", Dialog.ModalityType.APPLICATION_MODAL);
+        IconeAplicacao.aplicar(this);
         this.resultado = resultado;
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(true);

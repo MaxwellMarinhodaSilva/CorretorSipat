@@ -10,6 +10,7 @@ Aplicação desktop em Java 21 para analisar e corrigir arquivos posicionais SIP
 
 - aprimoramentos de interface para a tabela de duplicidades, a janela **Processamento concluído** e o estado inicial da aplicação;
 - histórico de arquivos com ações identificadas por ícones, confirmações de exclusão, estado vazio e botões alinhados em uma única linha responsiva;
+- ícone da aplicação otimizado para a barra de tarefas e a barra de título do Windows, com variantes nítidas de 16 a 256 px também aplicadas aos diálogos;
 - versão exibida de forma centralizada na aplicação, documentação atualizada e comentários profissionais em português do Brasil no código-fonte.
 
 ## Visão geral
